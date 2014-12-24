@@ -1,23 +1,23 @@
 package apps.sehmon.com.kaizen;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 
-public class HomeActivity extends Activity {
+public class KaizenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.kaizen_home);
+
+        if(savedInstanceState == null){
+           getFragmentManager().beginTransaction()
+                   .add(R.id.homeContainer, new KaizenFragment())
+                   .commit();
+        }
     }
 
 
@@ -43,21 +43,4 @@ public class HomeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class KaizenFragment extends Fragment {
-
-        public KaizenFragment() {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState){
-
-            View rootview = inflater.inflate(R.layout.activity_home, container, false);
-
-            return rootview;
-
-        }
-
-    }
 }
